@@ -13,13 +13,12 @@ def clean_temp():
                     shutil.rmtree(file_path)
                 print(f"deleted: {file_path}")
             except Exception as e:
-                print(f"Error deleting: {file_path}: {e}")
-                
+                print(f"Error deleting: {file_path}: {e}")   
     else:
         print("Temp directory not found.")
         
 def clean_prefetch():
-    prefetch_dir = os.environ.get('TEMP')
+    prefetch_dir = r"C:\Windows\Prefetch"
     if os.path.exists(prefetch_dir):
         for filename in os.listdir(prefetch_dir):
             file_path = os.path.join(prefetch_dir , filename)
@@ -31,9 +30,8 @@ def clean_prefetch():
                 print(f"deleted: {file_path}")
             except Exception as e:
                 print(f"Error deleting: {file_path}: {e}")
-                
     else:
-        print("Temp directory not found.")
+        print("Prefetch directory not found.")
         
 def clean_windows_temp():
     windows_temp_dir = r"C:\Windows\Temp"
@@ -48,9 +46,8 @@ def clean_windows_temp():
                 print(f"deleted: {file_path}")
             except Exception as e:
                 print(f"Error deleting: {file_path}: {e}")
-                
     else:
-        print("Temp directory not found.")
+        print("Windows Temp directory not found.")
         
         
 if __name__ == "__main__":

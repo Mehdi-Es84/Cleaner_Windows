@@ -1,84 +1,71 @@
-# Clean Temp Files
+```markdown
+# Windows Temp Files Cleaner
 
-این پروژه یک اسکریپت پایتون است که فایل‌های موقتی در دایرکتوری‌های `%TEMP%`، `C:\Windows\Prefetch`، و `C:\Windows\Temp` در سیستم‌عامل ویندوز را پاک می‌کند. این کار به آزاد شدن فضای دیسک و بهبود عملکرد سیستم کمک می‌کند.
+This is a simple Python script that cleans up temporary files in Windows. No more typing `%temp%` or other stuff in the Run box! It clears out files in three folders: `%TEMP%`, `C:\Windows\Prefetch`, and `C:\Windows\Temp` to free up disk space.
 
-## ویژگی‌ها
-- حذف خودکار فایل‌های موقتی بدون نیاز به تایپ دستی دستورات در Run.
-- پشتیبانی از سه دایرکتوری: `%TEMP%` (فایل‌های موقتی کاربر)، `C:\Windows\Prefetch` (داده‌های اجرای سریع برنامه‌ها)، و `C:\Windows\Temp` (فایل‌های موقتی سیستمی).
-- تأییدیه کاربر قبل از حذف برای جلوگیری از اشتباه.
-- امکان تبدیل به فایل اجرایی (`.exe`) برای استفاده بدون نیاز به پایتون.
+## What You Need
+- Windows (like Windows 10 or 11).
+- Python 3.6 or higher (if you want to run the script directly). Download it from [python.org](https://www.python.org/downloads/) and make sure to check "Add Python to PATH" during installation.
+- Admin access to delete system files in `C:\Windows\Temp` and `C:\Windows\Prefetch`.
+- PyInstaller (if you want to turn it into an `.exe` file, explained below).
 
-## پیش‌نیازها
-- **سیستم‌عامل**: ویندوز (هر نسخه‌ای مثل Windows 10 یا 11).
-- **پایتون**: نسخه 3.6 یا بالاتر (برای اجرای اسکریپت یا ساخت فایل `.exe`). از [python.org](https://www.python.org/downloads/) دانلود کنید و هنگام نصب گزینه "Add Python to PATH" را فعال کنید.
-- **دسترسی ادمین**: برای حذف فایل‌های سیستمی در `C:\Windows\Temp` و `C:\Windows\Prefetch`.
-- **PyInstaller** (برای ساخت فایل `.exe`): بعداً نحوه نصب توضیح داده شده است.
+## How to Run the Script
+If you have Python installed, you can run the script directly:
 
-## نحوه اجرای اسکریپت پایتون
-اگر پایتون روی سیستمتان نصب است، می‌توانید اسکریپت را مستقیماً اجرا کنید:
-
-1. فایل `clean_temp_files.py` را از این مخزن دانلود کنید.
-2. **Command Prompt یا PowerShell را به‌صورت ادمین باز کنید**:
-   - در منوی استارت، `cmd` یا `PowerShell` را جستجو کنید.
-   - روی آن راست‌کلیک کنید و "Run as administrator" را انتخاب کنید.
-3. به دایرکتوری‌ای که فایل `clean_temp_files.py` را ذخیره کرده‌اید بروید:
-   ```bash
-   cd مسیر_فایل
+1. Download the `clean_temp_files.py` file from this repository.
+2. Open Command Prompt or PowerShell **as admin**:
+   - Search for `cmd` or `PowerShell` in the Start menu.
+   - Right-click and select "Run as administrator".
+3. Go to the folder where you saved `clean_temp_files.py`:
    ```
-   مثلاً: `cd C:\Users\YourUsername\Desktop`
-4. اسکریپت را اجرا کنید:
-   ```bash
+   cd path_to_file
+   ```
+   Example: `cd C:\Users\YourUsername\Desktop`
+4. Run the script:
+   ```
    python clean_temp_files.py
    ```
-5. وقتی برنامه از شما می‌پرسد "آیا مطمئن هستید که می‌خواهید ادامه دهید؟ (y/n):"، حرف `y` را وارد کنید تا پاک‌سازی شروع شود.
-6. خروجی‌ها (فایل‌های حذف‌شده یا خطاها) در پنجره نمایش داده می‌شوند. در پایان، Enter بزنید تا برنامه بسته شود.
+5. When it asks "Are you sure you want to continue? (y/n):", type `y` to start cleaning.
+6. You’ll see the deleted files or any errors. Press Enter at the end to close.
 
-## تبدیل به فایل اجرایی (EXE)
-اگر می‌خواهید برنامه را بدون نیاز به نصب پایتون اجرا کنید، می‌توانید آن را به یک فایل اجرایی (`.exe`) تبدیل کنید:
+## How to Make an EXE File
+If you don’t want to install Python, you can turn the script into an `.exe` file:
 
-1. **نصب PyInstaller**:
-   - در Command Prompt یا PowerShell (به‌صورت ادمین) دستور زیر را اجرا کنید:
-     ```bash
-     pip install pyinstaller
-     ```
-2. به دایرکتوری فایل `clean_temp_files.py` بروید:
-   ```bash
-   cd مسیر_فایل
+1. Install PyInstaller. Open Command Prompt or PowerShell (as admin) and run:
    ```
-   مثلاً: `cd C:\Users\YourUsername\Desktop`
-3. فایل اجرایی را بسازید:
-   ```bash
+   pip install pyinstaller
+   ```
+2. Go to the folder with `clean_temp_files.py`:
+   ```
+   cd path_to_file
+   ```
+   Example: `cd C:\Users\YourUsername\Desktop`
+3. Create the `.exe` file:
+   ```
    pyinstaller --onefile clean_temp_files.py
    ```
-   - این دستور یک فایل `clean_temp_files.exe` در پوشه `dist` ایجاد می‌کند.
-4. به پوشه `dist` بروید و فایل `clean_temp_files.exe` را پیدا کنید.
-5. **فایل را به‌صورت ادمین اجرا کنید**:
-   - روی فایل راست‌کلیک کنید و "Run as administrator" را انتخاب کنید.
-6. وقتی برنامه از شما می‌پرسد "آیا مطمئن هستید که می‌خواهید ادامه دهید؟ (y/n):"، حرف `y` را وارد کنید تا پاک‌سازی شروع شود.
-7. خروجی‌ها در پنجره Command Prompt نمایش داده می‌شوند. در پایان، Enter بزنید تا برنامه بسته شود.
+4. Find the `clean_temp_files.exe` file in the `dist` folder.
+5. **Run it as admin**:
+   - Right-click the file and choose "Run as administrator".
+6. When it asks "Are you sure you want to continue? (y/n):", type `y` to start cleaning.
+7. You’ll see the output in the Command Prompt. Press Enter to close.
 
-## هشدارها
-- **احتیاط کنید**: این اسکریپت فایل‌ها را به‌صورت دائمی حذف می‌کند. قبل از اجرا، مطمئن شوید هیچ فایل مهمی در دایرکتوری‌های `%TEMP%`، `C:\Windows\Prefetch`، یا `C:\Windows\Temp` ندارید.
-- **خطاهای Permission denied**: بعضی فایل‌ها ممکن است به دلیل استفاده توسط ویندوز حذف نشوند. این طبیعی است و برنامه به پاک‌سازی بقیه فایل‌ها ادامه می‌دهد.
-- **بک‌آپ**: پیشنهاد می‌شود قبل از اجرا از داده‌های مهم خود نسخه پشتیبان تهیه کنید.
-- **آنتی‌ویروس**: فایل `.exe` ممکن است توسط برخی آنتی‌ویروس‌ها مشکوک تشخیص داده شود. می‌توانید آن را به‌عنوان استثنا به آنتی‌ویروس خود اضافه کنید.
+## Important Notes
+- **Be careful**: This script permanently deletes files! Make sure there’s nothing important in `%TEMP%`, `C:\Windows\Prefetch`, or `C:\Windows\Temp`.
+- If you see "Permission denied" errors, it means Windows is using some files. That’s normal, and the script will keep cleaning the rest.
+- Back up any important files before running.
+- Some antivirus programs might flag the `.exe` as suspicious. You can add it as an exception.
 
-## ساختار کد
-- `clean_temp()`: پاک کردن دایرکتوری `%TEMP%` (فایل‌های موقتی کاربر).
-- `clean_prefetch()`: پاک کردن دایرکتوری `C:\Windows\Prefetch` (داده‌های اجرای سریع برنامه‌ها).
-- `clean_windows_temp()`: پاک کردن دایرکتوری `C:\Windows\Temp` (فایل‌های موقتی سیستمی).
+## What the Code Does
+- `clean_temp()`: Clears the `%TEMP%` folder (user temp files).
+- `clean_prefetch()`: Clears the `C:\Windows\Prefetch` folder (program speedup data).
+- `clean_windows_temp()`: Clears the `C:\Windows\Temp` folder (system temp files).
 
-## نکات اضافی
-- **حجم فایل EXE**: فایل اجرایی ممکن است 5-10 مگابایت باشد، زیرا شامل کتابخانه‌های پایتون است.
-- **تست**: قبل از به اشتراک گذاشتن فایل `.exe`، آن را روی چند سیستم تست کنید.
-- **آیکون دلخواه (اختیاری)**: برای افزودن آیکون به فایل `.exe`، از دستور زیر استفاده کنید:
-  ```bash
-  pyinstaller --onefile --icon=your_icon.ico clean_temp_files.py
-  ```
-  (فایل `your_icon.ico` باید در دایرکتوری پروژه باشد.)
+## Got Ideas?
+If you think I can add something cool (like a graphical interface or showing how much space was freed), let me know in the Issues section or send a Pull Request!
 
-## مشارکت
-اگر پیشنهادی برای بهبود اسکریپت دارید (مثل افزودن رابط گرافیکی یا گزارش فضای آزاد شده)، خوشحال می‌شوم Pull Request بفرستید یا Issue باز کنید!
+## License
+This project is released under the [MIT License](LICENSE).
 
-## لایسنس
-این پروژه تحت [لایسنس MIT](LICENSE) منتشر شده است.
+Made by [Mohammad Mehdi Eskandari]
+```
